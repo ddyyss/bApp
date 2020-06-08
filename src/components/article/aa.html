@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [
+      { comment_id: 216, user_id: 42, comment_date: "05-20", comment_content: "送命?", parent_id: null },
+      { comment_id: 317, user_id: 522, comment_date: "05-23", comment_content: "敬华丰真帅", parent_id: null },
+      { comment_id: 318, user_id: 522, comment_date: "05-23", comment_content: "嗯哦哦", parent_id: "216" },
+      { comment_id: 319, user_id: 522, comment_date: "05-23", comment_content: "傻逼", parent_id: "216" },
+      { comment_id: 320, user_id: 522, comment_date: "05-23", comment_content: "敬大帅", parent_id: "216" },
+      { comment_id: 321, user_id: 522, comment_date: "05-23", comment_content: "啊啊啊", parent_id: null },
+    ]
+
+  /*   let arr1 = []
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].parent_id == null) {
+        arr1.push(arr[i])
+
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[i].comment_id == arr[j].parent_id) {
+            arr[i].child = arr[j]
+
+            for (var p = 0; p < arr.length; p++) {
+              arr[j].child = arr[p]
+            }
+          }
+        }
+      }
+    }
+    console.log(arr1); */
+
+    function fn(temp) {
+      let arr1 = []
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].parent_id == temp) {
+          arr1.push(arr[i])
+          arr[i].child=fn(arr[i].comment_id)
+        }
+      }
+      return arr1
+    }
+    const res = fn(null)
+    console.log(res);
+
+  </script>
+</body>
+
+</html>
